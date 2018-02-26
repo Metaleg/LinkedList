@@ -5,27 +5,11 @@
 #include "LinkedList.h"
 
 LinkedList::~LinkedList() {
-    while (first != NULL) {   //Пока по адресу не пусто
-        Node *temp = first->next; //Временная переменная для хранения адреса следующего элемента
-        std::cout<<"deleted "<<first->data<<std::endl;
-        delete first; //Освобождаем адрес обозначающий начало
-        first = temp; //Меняем адрес на следующий
+    while (first != nullptr) {
+        Node *temp = first->next;
+        delete first;
+        first = temp;
     }
-}
-
-
-int LinkedList::getSize() const {return size;}
-
-bool LinkedList::isEmpty() const {
-    return (first == NULL) ? true : false;
-}
-
-void LinkedList::add(int d) {
-    Node* newnode = new Node;
-    newnode->data = d;
-    newnode->next=first;
-    first = newnode;
-    size++;
 }
 
 void LinkedList::show() {
@@ -36,16 +20,68 @@ void LinkedList::show() {
     }
 }
 
-int& LinkedList::operator[](int ind){
+int LinkedList::get_size() const {return size;}
+
+bool LinkedList::is_empty() const {
+    return (first == nullptr) ? true : false;
+}
+
+void LinkedList::push_front(int val) {
+    Node* newnode = new Node;
+    newnode->data = val;
+    newnode->next=first;
+    first = newnode;
+    size++;
+}
+
+void LinkedList::pop_front() {
+    Node *temp = first->next;
+    delete first;
+    first = temp;
+    size--;
+}
+
+int& LinkedList::get_front() {
+    return first->data;
+}
+
+const int& LinkedList::get_front() const {
+    return first->data;
+}
+
+
+int& LinkedList::operator[](int pos){
     Node* current = first;
-    for (int i = 0; i < (ind); ++i)
+    for (int i = 0; i < pos; ++i)
         current = current->next;
     return current->data;
 }
 
-const int& LinkedList::operator[](int ind) const {
+const int& LinkedList::operator[](int pos) const {
     Node* current = first;
-    for (int i = 0; i < (size - ind - 1); ++i)
+    for (int i = 0; i < pos; ++i)
         current = current->next;
     return current->data;
+}
+
+void LinkedList::insert(int pos, int val) {
+    Node* newnode= new Node;
+    newnode->data = val;
+    Node* current = first;
+    for (int i = 0; i < (pos - 1); ++i)
+        current = current->next;
+    newnode->next = current->next;
+    current->next = newnode;
+    size++;
+}
+
+void LinkedList::erase(int pos) {
+    Node* current = first;
+    for (int i = 0; i < (pos - 1); ++i)
+        current = current->next;
+    Node* left = current;
+    current = current->next;
+    left->next = current->next;
+    delete current;
+    size--;
 }
