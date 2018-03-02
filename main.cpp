@@ -15,13 +15,16 @@ int main() {
     l.push_front(0);
 
 
-    if (l.is_empty())
+    /*if (l.is_empty())
         std::cout<<"List is empty\n";
     else
         std::cout<<"List is not empty\n";
     std::cout<<"List size: "<<l.get_size()<<std::endl;
     l.show();
-    //std::cout<<"First element: "<<l.get_front()<<std::endl;
+    //std::cout<<"First element: "<<l.get_front()<<std::endl;*/
+
+    LinkedList l2;
+    l2.show();
 
     std::cout<<std::endl;
 

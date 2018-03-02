@@ -4,6 +4,11 @@
 
 #include "LinkedList.h"
 
+LinkedList::LinkedList(const LinkedList &list) {
+    for (int i = 0; i < list.size; ++i)
+        push_front(list[list.size - i - 1]);
+}
+
 LinkedList::~LinkedList() {
     while (first != nullptr) {
         Node *temp = first->next;
@@ -15,7 +20,7 @@ LinkedList::~LinkedList() {
 void LinkedList::show() {
     Node* current = first;
     while(current){
-        std::cout<<current->data<<std::endl;
+        std::cout << current->data << std::endl;
         current = current->next;
     }
 }
@@ -84,4 +89,10 @@ void LinkedList::erase(int pos) {
     left->next = current->next;
     delete current;
     size--;
+}
+
+LinkedList LinkedList::operator=(const LinkedList &list) {
+    for (int i = 0; i < list.size; ++i)
+        push_front(list[list.size - i - 1]);
+    return *this;
 }

@@ -18,21 +18,38 @@ class LinkedList {
     int size;
 public:
     LinkedList():first(nullptr), size(0){}
+    LinkedList(const LinkedList &list);
+    LinkedList operator=(const LinkedList &list);
     ~LinkedList();
 
-    void show();
+    void show();//
 
-    int get_size() const; // Получить размер списка
-    bool is_empty() const; // Возвращает true, если список пуст и должен делать это эффективно
-    int& operator[](int ind); // Неконстантный оператор получения ссылки на i-й элемент (если такой синтаксис в новинку, то гугли перегрузку операторов.
-    const int& operator[](int) const; // Константный оператор получения ссылки. Должна знать, почему он нам нужен и почему не можем ограничиться только первым (см. const у методов)
-    void push_front(int val); // Добавление элемента в начало списка
-    void pop_front(); // Удаление элемента из начала списка
-    int& get_front(); // Получение первого элемента
-    const int& get_front() const; // Аналогично, как и в случае с операторами []
-    void insert(int pos, int val); // Добавить новый элемент в заданную позицию
-    void erase(int pos); // Удалить определенный элемент
+    int get_size() const;
+    bool is_empty() const;
+    int& operator[](int ind);s
+    const int& operator[](int) const;
+    void push_front(int val);
+    void pop_front();
+    int& get_front();
+    const int& get_front() const;
+    void insert(int pos, int val);
+    void erase(int pos);
 };
 
 
 #endif //LINKEDLIST_LINKEDLIST_H
+
+
+/*
+В списке еще должны быть конструкторы копирования и перемещения, плюс операторы копирования и перемещения
+
+ вообще про особенности структур данных нужно знать.
+ советую изучить подробнее про особенности списков, динамических массивов (векторов), деревьев, хэш-таблиц,
+ очередей, стеков, двунаправленных очередей (dequeue) и очередей с приоритетом.
+ без этого в программировании вообще никуда)
+
+ сразу замечу, что связку new/delete сейчас используют довольно редко и внутри списка нужно использовать unique_ptr для хранения указателей
+
+в частности смотри либо Boost.Test, либо gtest
+
+ */
