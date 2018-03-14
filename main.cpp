@@ -12,7 +12,7 @@ int main() {
     l.push_front(31);
     l.push_front(41);
     l.push_front(51);
-    l.push_front(0);
+    l.push_front(3);
 
 
     /*if (l.is_empty())
@@ -20,11 +20,32 @@ int main() {
     else
         std::cout<<"List is not empty\n";
     std::cout<<"List size: "<<l.get_size()<<std::endl;
-    l.show();
-    //std::cout<<"First element: "<<l.get_front()<<std::endl;*/
+    std::cout<<"First element: "<<l.get_front()<<std::endl;
+    l.show();*/
 
-    LinkedList l2;
+
+    LinkedList&& l5 = LinkedList();
+    l5.show();
+    std::cout<<std::endl;
+
+ /*   LinkedList l2;
+
+    //l2.show();
+
+    if (l2.is_empty())
+        std::cout<<"List is empty\n";
+    else
+        std::cout<<"List is not empty\n";
+
+    std::cout<<"First element: "<<l2.get_front()<<std::endl;
+    std::cout << l2[2] << std::endl;
+    l2.pop_front();
+    l2.insert(5, 25);
+    l2.push_front(5);
     l2.show();
+    l2.clear();
+    l2.show();*/
+
 
     std::cout<<std::endl;
 

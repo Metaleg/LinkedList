@@ -7,49 +7,38 @@
 
 #include <iostream>
 #include <iomanip>
+#include <memory>
 
 struct Node {
     int data;
-    Node *next;
+    std::unique_ptr<Node> next;
 };
 
 class LinkedList {
-    Node* first;
+    std::unique_ptr<Node> first;
     int size;
 public:
     LinkedList():first(nullptr), size(0){}
-    LinkedList(const LinkedList &list);
-    LinkedList operator=(const LinkedList &list);
-    ~LinkedList();
+    LinkedList(const LinkedList& list);
+    LinkedList(LinkedList&& list);
+    LinkedList& operator=(const LinkedList& list);
+    LinkedList& operator=(LinkedList&& list);
+    virtual ~LinkedList() = default;
 
-    void show();//
+    void show();
 
     int get_size() const;
     bool is_empty() const;
-    int& operator[](int ind);s
-    const int& operator[](int) const;
+    int operator[](int ind);
+    const int operator[](int) const;
     void push_front(int val);
     void pop_front();
-    int& get_front();
-    const int& get_front() const;
-    void insert(int pos, int val);
+    int get_front();
+    const int get_front() const;
+    void insert(int pos,int val);
     void erase(int pos);
+    void clear();
 };
 
 
 #endif //LINKEDLIST_LINKEDLIST_H
-
-
-/*
-В списке еще должны быть конструкторы копирования и перемещения, плюс операторы копирования и перемещения
-
- вообще про особенности структур данных нужно знать.
- советую изучить подробнее про особенности списков, динамических массивов (векторов), деревьев, хэш-таблиц,
- очередей, стеков, двунаправленных очередей (dequeue) и очередей с приоритетом.
- без этого в программировании вообще никуда)
-
- сразу замечу, что связку new/delete сейчас используют довольно редко и внутри списка нужно использовать unique_ptr для хранения указателей
-
-в частности смотри либо Boost.Test, либо gtest
-
- */
