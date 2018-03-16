@@ -5,7 +5,7 @@
 
 
 int main() {
-    LinkedList l;
+    LinkedList<int> l;
 
     l.push_front(11);
     l.push_front(21);
@@ -15,18 +15,23 @@ int main() {
     l.push_front(3);
 
 
-    /*if (l.is_empty())
+    if (l.is_empty())
         std::cout<<"List is empty\n";
     else
         std::cout<<"List is not empty\n";
     std::cout<<"List size: "<<l.get_size()<<std::endl;
     std::cout<<"First element: "<<l.get_front()<<std::endl;
-    l.show();*/
+    l.show();
+
+    std::cout << "l[3] = " << l[3] << std::endl;
+    l.show();
+    l.pop_front();
+    l.pop_front();
+    std::cout << std::endl;
+    l.show();
 
 
-    LinkedList&& l5 = LinkedList();
-    l5.show();
-    std::cout<<std::endl;
+
 
  /*   LinkedList l2;
 
